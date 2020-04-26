@@ -23,7 +23,7 @@ describe Library do
       subject.content_id = season.id
       subject.user_id = user.id
       subject.valid?
-      expect(subject.errors[:content]).to include('is already purchased')
+      expect(subject.errors[:content_id]).to include('has already been taken')
     end
   end
 

@@ -4,7 +4,7 @@ module Api
   module V1
     class LibrariesController < ApplicationController
       def index
-        libraries = Library.alive_contents(params[:user_id]).order_by_created
+        libraries = current_user.available_contents.order_by_created
         render json: libraries
       end
 
