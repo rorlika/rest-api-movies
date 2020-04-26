@@ -4,10 +4,7 @@ module Api
   module V1
     class LibrariesController < ApplicationController
       def index
-        two_days = 2.days.ago...Time.current
-        libraries = Library.where(user_id: params[:user_id],
-                                  created_at: two_days)
-                           .order(:created_at)
+        libraries = Library.alive_contents(params[:user_id]).order_by_created
         render json: libraries
       end
 

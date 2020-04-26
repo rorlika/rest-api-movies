@@ -4,10 +4,8 @@ module Api
   module V1
     class SeasonsController < ApplicationController
       def index
-        # seasons = Season.all.order(:created_at)
-        # render json: seasons, include: :episodes
-        seasons = Season.with_episodes
-        render json: seasons
+        seasons = Season.all.order_by_created
+        render json: seasons, include: :episodes
       end
     end
   end

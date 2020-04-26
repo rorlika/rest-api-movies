@@ -4,7 +4,7 @@ module Api
   module V1
     class MoviesController < ApplicationController
       def index
-        movies = Movie.all.order(:created_at)
+        movies = Movie.all.order_by_created
         render json: movies
       end
     end

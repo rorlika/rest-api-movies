@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Library < ApplicationRecord
+  ALIVE = 2.days.ago.freeze
+
   belongs_to :user
   belongs_to :content
 
@@ -9,8 +11,11 @@ class Library < ApplicationRecord
   validate :validate_content_id
   validate :validate_existed_content
 
+  scope :alive_contents, ->(user_id) { where(user_id: user_id) }
+  scope :order_by_created, -> { order(:created_at) }
+
   scope :overlapping, lambda { |user_id, content_id|
-    where(user_id: user_id, content_id: content_id, created_at: 2.days.ago...Time.current)
+    where('user_id = ? and content_id = ? and created_at >= ?', user_id, content_id, ALIVE)
   }
 
   private
