@@ -1,24 +1,17 @@
-# README
+# Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Install Ruby
+2. `gem install bundler`
+3. `bundle install`
 
-Things you may want to cover:
+## Running migrations
 
-* Ruby version
+`rails db:migrate`
 
-* System dependencies
+## Running seeds
 
-* Configuration
+`rails db:seed`
 
-* Database creation
+## Running Specs
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`bundle exec rspec`
