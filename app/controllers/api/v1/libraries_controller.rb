@@ -4,8 +4,8 @@ module Api
   module V1
     class LibrariesController < ApplicationController
       def index
-        libraries = current_user.available_contents.order_by_created
-        render json: libraries
+        contents = current_user.available_contents.order_by_created
+        render json: contents
       end
 
       def create
@@ -13,7 +13,7 @@ module Api
         if library.save
           render json: library, status: 201
         else
-          render json: library.errors
+          render json: library.errors, status: :unprocessable_entity
         end
       end
 
